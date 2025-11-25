@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.backend.mappers.CompanyMapper">
+
+    <insert id="insertCompany"
+            parameterType="com.example.backend.models.Company">
+        INSERT INTO company_info (
+        login_id,
+        business_reg_no,
+        company_name,
+        contact_person,
+        contact_phone_number,
+        contact_email,
+        address,
+        address_detail,
+        target_no_accident_days,
+        target_incident,
+        target_law,
+        target_etc,
+        main_process,
+        has_required_docs
+        ) VALUES (
+        #{loginId},
+        #{businessRegNo},
+        #{companyName},
+        #{contactPerson},
+        #{contactPhoneNumber},
+        #{contactEmail},
+        #{address},
+        #{addressDetail},
+        #{targetNoAccidentDays},
+        #{targetIncident},
+        #{targetLaw},
+        #{targetEtc},
+        #{mainProcess},
+        #{hasRequiredDocs}
+        )
+    </insert>
+    <select id="selectPrimeCompany">
+        SELECT
+        c.company_name AS companyName,
+        c.business_reg_no AS businessRegNo,
+        c.id,
+        c.contact_person AS contactPerson,
+        c.contact_phone_number AS contactPhoneNumber,
+        c.contact_email AS contactEmail,
+        p.price_name AS priceName
+        FROM company c
+        INNER JOIN price p ON p.uid = c.price_uid
+        WHERE (c.delete_yn IS NULL OR c.delete_yn = 'N')
+        ORDER BY c.uid DESC
+    </select>
+
+</mapper>
