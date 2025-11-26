@@ -211,8 +211,6 @@ export default function CompanyInf() {
                     value={formData.address}
                     // 주소는 직접 타이핑 안 하고, 팝업에서 선택만 하게 할 거면 onChange 제거
                     readOnly
-                    onClick={handleSearchAddress}   // ⬅️ 인풋 누르면 팝업 열기
-                    onFocus={handleSearchAddress}   // ⬅️ 탭으로 이동해도 팝업 열기 (선택)
                     placeholder="도로명 주소를 검색해주세요"
                     ref={addressRef}
                   />
